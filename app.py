@@ -3,6 +3,7 @@ from modules.ssl_check import get_ssl_info
 from modules.headers_check import check_security_headers
 from modules.risk_analyzer import analyze_headers
 from modules.form_discovery import discover_forms
+from modules.report_generator import generate_report
 
 url = input("Enter Website URL: ")
 
@@ -40,3 +41,13 @@ if len(forms) == 0:
 
 for form in forms:
     print(form)
+
+report = generate_report(
+    url,
+    recon,
+    ssl_info,
+    headers,
+    findings
+)
+
+print(f"\nReport Generated: {report}")
